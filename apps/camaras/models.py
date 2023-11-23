@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from PIL import Image
 from io import BytesIO
+from django.core.files.base import ContentFile
 
 # Create your models here.
 class Camara(models.Model):
@@ -15,7 +16,7 @@ class Camara(models.Model):
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
 
     # Atributo para el nombre de la cámara
-    nombre = models.CharField(max_length=100, default="SinNombre")
+    nombre = models.CharField(max_length=100, default="Camara")
 
     # Atributo para el ángulo de visión, puedes usar un campo Decimal o FloatField para almacenar valores numéricos.
     angulo_de_vision = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(360)])
@@ -41,11 +42,51 @@ class Camara(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.imagen:
-            # Abre la imagen con Pillow y conviértela a una secuencia de bytes
-            img = Image.open(self.imagen.path)
+            # Llama a la función utilitaria para convertir la imagen a bytes
+            byte_sequence = convertir_imagen_a_bytes(self.imagen.path)
+            if byte_sequence:
+                # Actualiza el campo imagen con la secuencia de bytes
+                self.imagen.save('imagen.jpg', ContentFile(byte_sequence), save=False)
+                super().save(*args, **kwargs)
+class Sensores(models.Model):
+    nombre = models.CharField(max_length=100, default="Sensor")
+
+    # Opciones para el atributo tipo
+    TIPO_CHOICES = [
+        ('presencia', 'Presencia'),
+        ('puertas y ventanas', 'Puertas y Ventanas'),
+        ('movimiento', 'Movimiento'),
+    ]
+
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+
+    precio = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
+
+    marca = models.CharField(max_length=100)
+
+    imagen = models.ImageField(upload_to='sensores/', blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.get_tipo_display()} - {self.marca}'
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.imagen:
+            # Llama a la función utilitaria para convertir la imagen a bytes
+            byte_sequence = convertir_imagen_a_bytes(self.imagen.path)
+            if byte_sequence:
+                # Actualiza el campo imagen con la secuencia de bytes
+                self.imagen.save('imagen.jpg', ContentFile(byte_sequence), save=False)
+                super().save(*args, **kwargs)
+
+
+def convertir_imagen_a_bytes(imagen_path):
+    try:
+        with Image.open(imagen_path) as img:
             buffer = BytesIO()
             img.save(buffer, format='JPEG')
             byte_sequence = buffer.getvalue()
-            # Actualiza el campo imagen_bytes con la secuencia de bytes
-            self.imagen_bytes = byte_sequence
-            super().save(*args, **kwargs)
+            return byte_sequence
+    except Exception as e:
+        raise ValueError(f"Error al convertir la imagen a bytes: {e}")
