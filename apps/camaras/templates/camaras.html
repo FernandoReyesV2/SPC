@@ -85,8 +85,8 @@
                 <p>
 
                 </p>
-                <div class="btn-box">
-                        <a href="disenoPlanos.html" class="btn-1" id="enlaceRedireccionar" onclick="redireccionar(eve)">
+                 <div class="btn-box">
+                        <a href="disenoPlanos.html" class="btn-1" id="enlaceRedireccionar">
                           Siguiente
                         </a>
                 </div>
@@ -123,7 +123,7 @@
                                 <a href = "#" class = "item-name">Camara Steren cctv-218</a>
                                 <div class = "item-price">
                                     <span class = "new-price">$220.00</span>
-                                    <span class = "old-price">$275.60</span>
+                                    
                                 </div>
                                 <p>Micrófono: Captura sonido para que los escuches desde tu celular.
                                     LED infrarrojo: Visión nocturna.
@@ -149,7 +149,6 @@
                                 <a href = "#" class = "item-name">Camara Poe</a>
                                 <div class = "item-price">
                                     <span class = "new-price">$220.00</span>
-                                    <span class = "old-price">$275.60</span>
                                 </div>
                                 <p>Compatible con la aplicación:: Smart Life
                                     Tipo de montaje: Sobrepuesto
@@ -180,7 +179,7 @@
                                 <a href = "#" class = "item-name">Camar Wifi smart 1080p</a>
                                 <div class = "item-price">
                                     <span class = "new-price">$220.00</span>
-                                    <span class = "old-price">$275.60</span>
+                                
                                 </div>
                                 <p>Comunicación de audio tipo dúplex .
                                     Cuenta con Sirena para activar cuando se necesite alertar.
@@ -207,7 +206,7 @@
                                 <a href = "#" class = "item-name">Camara para Exterior C8C</a>
                                 <div class = "item-price">
                                     <span class = "new-price">$110.49</span>
-                                    <span class = "old-price">$175.60</span>
+                                    
                                 </div>
                                 <p>La C8C es la primera cámara de exteriores con movimiento horizontal y vertical de EZVIZ, un gran avance que combina un diseño exquisito con una amplia funcionalidad. Al capturar más detalles que las cámaras de exterior ordinarias, esta cámara asegura una protección fiable y completa de todo el exterior.</p>
                                 <button type = "button" class = "add-btn">add to cart</button>
@@ -230,7 +229,7 @@
                                 <a href = "#" class = "item-name">Camara minidomo y de tecnologia ip</a>
                                 <div class = "item-price">
                                     <span class = "new-price">$785.11</span>
-                                    <span class = "old-price">$805.60</span>
+                                   
                                 </div>
                                 <p>-Serie EasyIP 4.0 con tecnología Acusense: detección inteligente de personas y/o vehículos.
 
@@ -273,7 +272,7 @@
                                 <a href = "#" class = "item-name">xiaomi outdoor camera aw300</a>
                                 <div class = "item-price">
                                     <span class = "new-price">$220.00</span>
-                                    <span class = "old-price">$275.60</span>
+                                   
                                 </div>
                                 <p>2K Full-HD | Visión nocturna inteligente a todo color | Zona de enfoque ajustable | Resistencia IP66 a prueba de condiciones meteorológicas adversas</p>
                                 <button type = "button" class = "add-btn">add to cart</button>
@@ -303,14 +302,19 @@
              detailsViewBtn.classList.add('active-btn');
              gridViewBtn.classList.remove("active-btn");
              itemList.classList.add("details-active");
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+            // Obtén una referencia al enlace
+            var enlaceRedireccionar = document.getElementById('enlaceRedireccionar');
 
-             function redireccionar(event) {
+            // Agrega un escuchador de eventos para el clic en el enlace
+            enlaceRedireccionar.addEventListener('click', function (event) {
                 // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
                 event.preventDefault();
 
                 // Redirige a la otra página
                 window.location.href = '/disenoPlanos/';
-            }
+            });
         });
 
 
