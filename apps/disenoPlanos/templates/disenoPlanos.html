@@ -77,15 +77,19 @@
     <div class="fondo">
         <div class="menu_planos">
             <div class="subir_plano">
-                <input type="file" id="subir_archivo" accept="image/*" class="hidden">
-                <label for="subir_archivo" class="custom-file-input-button">Seleccionar archivo</label>
+        <!-- Formulario oculto -->
+            <form id="subirPlanoForm" method="post" enctype="multipart/form-data" class="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <label for="imagenInput" class="custom-file-input-button">Seleccionar Imagen</label>
+            </form>
             </div>
+            <button class="terminar_plano" type="submit" id="terminarPlanoBtn">Enviar Plano</button>
             <button class="dibujar_habitacion">🟥  Dibujar Habitacion</button>
             <button class="colocar_ventana">🟧  Colocar Ventana</button>
             <button class="dibujar_pared">🟨  Dibujar Pared</button>
             <button class="definir_habitacion">🟩  Definir Habitacion</button>
             <button class="colocar_puerta">🟦  Colocar Puerta</button>
-            <button class="terminar_plano">Terminar Plano</button>
         </div>
     </div>
   </section>
@@ -113,6 +117,14 @@
                 // Redirige a la otra página
                 window.location.href = '/';
             }
+        });
+    </script>
+
+    <script>
+        // Agrega un escuchador de eventos para el clic en el botón "Terminar Plano"
+        document.getElementById('terminarPlanoBtn').addEventListener('click', function() {
+            // Simula un clic en el botón de envío del formulario cuando se hace clic en "Terminar Plano"
+            document.getElementById('subirPlanoForm').submit();
         });
     </script>
 </body>
