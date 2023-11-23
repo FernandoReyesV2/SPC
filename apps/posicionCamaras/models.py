@@ -13,7 +13,7 @@ class CambiarPlanos(models.Model):
 
 class CambiarHardware(models.Model):
     nombre = models.CharField(max_length=255)
-    especificaciones = models.TextField(
+    especificaciones = models.TextField()
 
 
 class ExportarPDF(models.Model):
