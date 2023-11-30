@@ -20,10 +20,12 @@ from django.urls import path
 from apps.disenoPlanos.views import disenoPlanos
 from apps.Home.views import inicio
 from apps.camaras.views import camaras
+from apps.posicionCamaras.views import posicionCamaras
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'),
     path('camaras/', camaras, name='camaras'),
-    path('disenoPlanos/', disenoPlanos, name='disenoPlanos')
+    path('disenoPlanos/', disenoPlanos, name='disenoPlanos'),
+    path('posicionCamaras/', posicionCamaras, name='posicionCamaras'),
 ]
