@@ -21,6 +21,8 @@ from apps.disenoPlanos.views import disenoPlanos
 from apps.Home.views import inicio
 from apps.camaras.views import camaras
 from apps.posicionCamaras.views import posicionCamaras
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +31,6 @@ urlpatterns = [
     path('disenoPlanos/', disenoPlanos, name='disenoPlanos'),
     path('posicionCamaras/', posicionCamaras, name='posicionCamaras'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

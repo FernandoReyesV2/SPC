@@ -3,6 +3,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+import os
+
+from config import settings
+
 
 # Create your models here.
 class Camara(models.Model):
@@ -42,8 +46,10 @@ class Camara(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.imagen:
+            # Construye la ruta completa utilizando os.path.join
+            imagen_path = os.path.join(settings.MEDIA_ROOT, str(self.imagen))
             # Llama a la función utilitaria para convertir la imagen a bytes
-            byte_sequence = convertir_imagen_a_bytes(self.imagen.path)
+            byte_sequence = convertir_imagen_a_bytes(imagen_path)
             if byte_sequence:
                 # Actualiza el campo imagen con la secuencia de bytes
                 self.imagen.save('imagen.jpg', ContentFile(byte_sequence), save=False)

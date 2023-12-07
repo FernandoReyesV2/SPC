@@ -2,360 +2,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel = "stylesheet" href="{% static 'css/camaras.css' %}">
-
-  <!-- font awesome stylesheet -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
-
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/camera.css' %}">
 </head>
-
 <body>
-  <div class="hero_area2">
-    <!-- header section strats -->
+<div class="hero_area2">
     <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
-          <a class="navbar-brand mr-5" id="enlaceIcon">
-            <img src="{% static 'images/camera_icon.png' %}" alt="">
-            <span>
-              SPC
-            </span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" id="enlaceInicio" >Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="enlaceAcerca"> Acerca </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="enlaceServicio" > Servicio </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="enlaceContacto" >Contacto</a>
-                </li>
-              </ul>
-              <form class="form-inline">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </div>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+                <a class="navbar-brand mr-5" id="enlaceIcon">
+                    <img src="{% static 'images/camera_icon.png' %}" alt="">
+                    <span>SPC</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" id="enlaceInicio">Inicio <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="enlaceAcerca">Acerca</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="enlaceServicio">Servicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="enlaceContacto">Contacto</a>
+                            </li>
+                        </ul>
+                        <form class="form-inline">
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
-  </div>
-    <div style="display: flex; justify-content: space-between;">
-        <form class="form_camaras">
-            <div class="form_container">
-                <h2> CATEGORIAS </h2>
-                <br>
-                <div>
-                    <select id="camaras">
-                        <option value=""disable>--camaras--</option>
-                        <option value=""> Bridge</option>
-                        <option value="">Instantanea </option>
-                        <option value="">Mirroless</option>
-                    </select>
+</div>
 
-                </div>
-
-                <div>
-                    <select id="sensores">
-                        <option value="">--Sensores--</option>
-                        <option value="">de distancia</option>
-                        <option value="">de luz</option>
-                        <option value="">de posición</option>
-                    </select>
-
-                </div>
-                <div>
-                    <select id="marca">
-                        <option value="">--Marca--</option>
-                        <option value="">Canon</option>
-                        <option value="">Nikon</option>
-                        <option value="">Panasonic</option>
-                    </select>
-                </div>
-                <div>
-                    <select id="Precio">
-                        <option value="">--Precio--</option>
-                        <option value="">18,58 US$</option>
-                        <option value="">32,90 US$</option>
-                        <option value="">102,39 US$</option>
-                    </select>
-                </div>
-                <div>
-                    <select id="resolucion">
-                        <option value="">--Resolución--</option>
-                        <option value="">720p (HD)</option>
-                        <option value="">960p (WHd)</option>
-                        <option value="">1080p (FULL HD) </option>
-                    </select>
-                </div>
-                </div>
-                <br>
-                <br>
-                <p>
-
-                </p>
-                 <div class="btn-box">
-                        <a href="disenoPlanos.html" class="btn-1" id="enlaceRedireccionar">
-                          Siguiente
-                        </a>
-                </div>
-
-            </form>
-            <div class = "main-wrapper">
-                <div class = "container_camaras">
-                    <div class = "main-title">
-                        <h1>Camaras de seguridad</h1>
-                    </div>
-                    <div class = "display-style-btns">
-                        <button type = "button" id = "grid-active-btn">
-                            <i class = "fas fa-th"></i>
-                        </button>
-                        <button type = "button" id = "details-active-btn">
-                            <i class = "fas fa-list-ul"></i>
-                        </button>
-                    </div>
-
-                    <div class = "item-list">
-                        <div class = "item">
-                            <div class = "item-img">
-                                <img src = "https://www.steren.com.ec/media/catalog/product/cache/532829604b379f478db69368d14615cd/image/209546867/camara-de-seguridad-wi-fi-full-hd-robotizada-con-seguidor-de-movimiento.jpg">
-                                <div class = "icon-list">
-                                    <button type = "button">
-                                        <i class = "fas fa-sync-alt"></i>
-                                    </button>
-                                    <button type = "button">
-                                        <i class = "far fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class = "item-detail">
-                                <a href = "#" class = "item-name">Camara Steren cctv-218</a>
-                                <div class = "item-price">
-                                    <span class = "new-price">$220.00</span>
-                                    
-                                </div>
-                                <p>Micrófono: Captura sonido para que los escuches desde tu celular.
-                                    LED infrarrojo: Visión nocturna.
-                                    Gabra en microSD: Soporta 128 GB.
-                                    Graba hasta 20 días con microSD de 128 GB. ( Por separado)</p>
-                                <button type = "button" class = "add-btn">add to cart</button>
-                            </div>
-                        </div>
-
-                        <div class = "item">
-                            <div class = "item-img">
-                                <img src = "data:image/jpeg;base64,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">
-                                <div class = "icon-list">
-                                    <button type = "button">
-                                        <i class = "fas fa-sync-alt"></i>
-                                    </button>
-                                    <button type = "button">
-                                        <i class = "far fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class = "item-detail">
-                                <a href = "#" class = "item-name">Camara Poe</a>
-                                <div class = "item-price">
-                                    <span class = "new-price">$220.00</span>
-                                </div>
-                                <p>Compatible con la aplicación:: Smart Life
-                                    Tipo de montaje: Sobrepuesto
-                                    Angulación/Direccionamiento: Fijo
-                                    Grado de protección IP: IP65
-                                    Megapíxeles: 5MP
-                                    Uso en: Interior y Exterior
-                                    Material principal: Plástico/PP
-                                    Color principal: Blanco
-                                    Colección: Dexel Smart</p>
-                                <button type = "button" class = "add-btn">add to cart</button>
-                            </div>
-                        </div>
-
-                        <div class = "item">
-                            <div class = "item-img">
-                                <img src = "data:image/jpeg;base64,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">
-                                <div class = "icon-list">
-                                    <button type = "button">
-                                        <i class = "fas fa-sync-alt"></i>
-                                    </button>
-                                    <button type = "button">
-                                        <i class = "far fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class = "item-detail">
-                                <a href = "#" class = "item-name">Camar Wifi smart 1080p</a>
-                                <div class = "item-price">
-                                    <span class = "new-price">$220.00</span>
-                                
-                                </div>
-                                <p>Comunicación de audio tipo dúplex .
-                                    Cuenta con Sirena para activar cuando se necesite alertar.
-                                    LEDs infrarrojos de compensación para una visión nocturna a blanco y negro​.
-                                    Cámara con una resolución de 2MP​.
-                                    Compatibilidad con la aplicación, Tuya Smart​.</p>
-                                <button type = "button" class = "add-btn">add to cart</button>
-                            </div>
-                        </div>
-
-                        <div class = "item">
-                            <div class = "item-img">
-                                <img src = "data:image/jpeg;base64,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">
-                                <div class = "icon-list">
-                                    <button type = "button">
-                                        <i class = "fas fa-sync-alt"></i>
-                                    </button>
-                                    <button type = "button">
-                                        <i class = "far fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class = "item-detail">
-                                <a href = "#" class = "item-name">Camara para Exterior C8C</a>
-                                <div class = "item-price">
-                                    <span class = "new-price">$110.49</span>
-                                    
-                                </div>
-                                <p>La C8C es la primera cámara de exteriores con movimiento horizontal y vertical de EZVIZ, un gran avance que combina un diseño exquisito con una amplia funcionalidad. Al capturar más detalles que las cámaras de exterior ordinarias, esta cámara asegura una protección fiable y completa de todo el exterior.</p>
-                                <button type = "button" class = "add-btn">add to cart</button>
-                            </div>
-                        </div>
-
-                        <div class = "item">
-                            <div class = "item-img">
-                                <img src = "data:image/jpeg;base64,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">
-                                <div class = "icon-list">
-                                    <button type = "button">
-                                        <i class = "fas fa-sync-alt"></i>
-                                    </button>
-                                    <button type = "button">
-                                        <i class = "far fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class = "item-detail">
-                                <a href = "#" class = "item-name">Camara minidomo y de tecnologia ip</a>
-                                <div class = "item-price">
-                                    <span class = "new-price">$785.11</span>
-                                   
-                                </div>
-                                <p>-Serie EasyIP 4.0 con tecnología Acusense: detección inteligente de personas y/o vehículos.
-
-                                    -Óptica fija 2.8 mm.
-
-                                    -Compresión H.265+.
-
-                                    -Leds IR 30m.
-
-                                    -WDR 120dB.
-
-                                    -Sin E/S audio.
-
-                                    -Sin E/S alarma.
-
-                                    -Detección SMART:
-
-                                    -Intrusión.
-
-                                    -Cruce de línea.
-
-                                    -Detección entrada/salida de zona.</p>
-                                <button type = "button" class = "add-btn">add to cart</button>
-                            </div>
-                        </div>
-
-                        <div class = "item">
-                            <div class = "item-img">
-                                <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz80vsrmzbpukJ1CCBM0vaNn9oa6KaDR3QsHWM3BvV5dZqz-bbjRED8MxW2MANPT3ra-8&usqp=CAU">
-                                <div class = "icon-list">
-                                    <button type = "button">
-                                        <i class = "fas fa-sync-alt"></i>
-                                    </button>
-                                    <button type = "button">
-                                        <i class = "far fa-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class = "item-detail">
-                                <a href = "#" class = "item-name">xiaomi outdoor camera aw300</a>
-                                <div class = "item-price">
-                                    <span class = "new-price">$220.00</span>
-                                   
-                                </div>
-                                <p>2K Full-HD | Visión nocturna inteligente a todo color | Zona de enfoque ajustable | Resistencia IP66 a prueba de condiciones meteorológicas adversas</p>
-                                <button type = "button" class = "add-btn">add to cart</button>
-                            </div>
-                        </div>
-
-
-                        </div>
-                    </div>
-                </div>
+<div class="contenedor">
+    <form class="form_camaras">
+        <div class="form_container">
+            <h2 class="categorias"> CATEGORIAS </h2>
+            <div>
+                <select id="camaras_tipo" name="tipo">
+                    <option value="" disable> 🟩 Tipo </option>
+                    {% for categoria in categorias_tipo %}
+                        <option value="{{ categoria }}">{{ categoria }}</option>
+                    {% endfor %}
+                </select>
             </div>
+
+            <div>
+                <select id="camaras_precio" name="precio">
+                    <option value="" disable> 🟦 Precio  </option>
+                    {% for categoria in categorias_precio %}
+                        <option value="{{ categoria }}">{{ categoria }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <select id="camaras_marca" name="marca">
+                    <option value="" disable> 🟨 Marca </option>
+                    {% for categoria in categorias_marca %}
+                        <option value="{{ categoria }}">{{ categoria }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <select id="camaras_resolucion" name="resolucion">
+                    <option value="" disable>🟧 Resolución </option>
+                    {% for categoria in categorias_resolucion %}
+                        <option value="{{ categoria }}">{{ categoria }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button class="Siguiente" id="Siguiente"> Siguiente </button>
+    </form>
+
+    <div class="main-wrapper">
+        <div class="container_camaras">
+            <div class="view-buttons">
+                <button type="button" id="grid-active-btn">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button type="button" id="details-active-btn">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+            </div>
+
+            <div class="item-list grid-view">
+                <!-- Agrega la clase 'grid-view' a 'item-list' para la vista en cuadrícula -->
+                {% for camara in camaras %}
+                    <div class="item" data-tipo="{{ camara.tipo }}" data-precio="{{ camara.precio }}"
+                         data-marca="{{ camara.marca }}" data-resolucion="{{ camara.resolucion }}">
+                        <div class="item-img">
+                            <img class="imagenes" src="{{ camara.imagen.url }}" alt="{{ camara.nombre }}">
+                        </div>
+                        <div class="item-detail">
+                            <a href="#" class="item-name">{{ camara.nombre }}</a>
+                            <div class="item-price">
+                                <span class="new-price">${{ camara.precio }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    <script>
+</div>
 
-        const itemList = document.querySelector('.item-list');
-        const gridViewBtn = document.getElementById('grid-active-btn');
-        const detailsViewBtn = document.getElementById('details-active-btn');
-        gridViewBtn.classList.add('active-btn');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Manejar cambios en los select
+        document.querySelectorAll('select').forEach(function (select) {
+            select.addEventListener('change', function () {
+                // Obtener los valores seleccionados
+                var tipo = document.getElementById('camaras_tipo').value;
+                var precio = document.getElementById('camaras_precio').value;
+                var marca = document.getElementById('camaras_marca').value;
+                var resolucion = document.getElementById('camaras_resolucion').value;
 
-        gridViewBtn.addEventListener('click', () => {
-            gridViewBtn.classList.add('active-btn');
-            detailsViewBtn.classList.remove('active-btn');
-            itemList.classList.remove('details-active');
+                console.log('Tipo:', tipo);
+                console.log('Precio:', precio);
+                console.log('Marca:', marca);
+                console.log('Resolución:', resolucion);
+
+                // Filtrar los elementos de la lista basados en las selecciones
+                document.querySelectorAll('.item').forEach(function (item) {
+                    var camaraTipo = item.getAttribute('data-tipo');
+                    var camaraPrecio = item.getAttribute('data-precio');
+                    var camaraMarca = item.getAttribute('data-marca');
+                    var camaraResolucion = item.getAttribute('data-resolucion');
+
+                    console.log('Item - Tipo:', camaraTipo);
+                    console.log('Item - Precio:', camaraPrecio);
+                    console.log('Item - Marca:', camaraMarca);
+                    console.log('Item - Resolución:', camaraResolucion);
+
+                    // Verificar si coincide con las selecciones
+                    if ((!tipo || camaraTipo === tipo) &&
+                        (!precio || camaraPrecio === precio) &&
+                        (!marca || camaraMarca === marca) &&
+                        (!resolucion || camaraResolucion === resolucion)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        // Agregar evento de clic para cambiar la vista
+        document.getElementById('grid-active-btn').addEventListener('click', function () {
+            document.querySelector('.item-list').classList.remove('list-view');
+            document.querySelector('.item-list').classList.add('grid-view');
         });
 
-        detailsViewBtn.addEventListener('click', () => {
-             detailsViewBtn.classList.add('active-btn');
-             gridViewBtn.classList.remove("active-btn");
-             itemList.classList.add("details-active");
-            }
-            document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('details-active-btn').addEventListener('click', function () {
+            document.querySelector('.item-list').classList.remove('grid-view');
+            document.querySelector('.item-list').classList.add('list-view');
+        });
+    });
+
+
+</script>
+
+      <script>
+        // Asegúrate de que el enlace esté disponible después de que se cargue la página
+        document.addEventListener('DOMContentLoaded', function () {
             // Obtén una referencia al enlace
-            var enlaceRedireccionar = document.getElementById('enlaceRedireccionar');
+            var enlaceRedireccionar = document.getElementById('Siguiente');
 
             // Agrega un escuchador de eventos para el clic en el enlace
             enlaceRedireccionar.addEventListener('click', function (event) {
-                // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
+                // Detén el comportamiento predeterminado del enlace para sevitar la navegación estándar
                 event.preventDefault();
 
                 // Redirige a la otra página
                 window.location.href = '/disenoPlanos/';
             });
         });
-
-
     </script>
+
 </body>
 </html>
-
-
-
-
-
