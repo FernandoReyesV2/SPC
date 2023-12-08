@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,121 +16,124 @@
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'css/camera.css' %}">
 </head>
+
 <body>
-<div class="hero_area2">
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
-                <a class="navbar-brand mr-5" id="enlaceIcon">
-                    <img src="{% static 'images/camera_icon.png' %}" alt="">
-                    <span>SPC</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" id="enlaceInicio">Inicio <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="enlaceAcerca">Acerca</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="enlaceServicio">Servicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="enlaceContacto">Contacto</a>
-                            </li>
-                        </ul>
-                        <form class="form-inline">
-                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                        </form>
+    <div class="hero_area2">
+        <header class="header_section">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+                    <a class="navbar-brand mr-5" id="enlaceIcon">
+                        <img src="{% static 'images/camera_icon.png' %}" alt="">
+                        <span>SPC</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" id="enlaceInicio">Inicio <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="enlaceAcerca">Acerca</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="enlaceServicio">Servicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="enlaceContacto">Contacto</a>
+                                </li>
+                            </ul>
+                            <form class="form-inline">
+                                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <div class="contenedor">
+        <!-- Contenedor de categorías y formulario de cámaras -->
+        <div class="form_camaras-container">
+            <form class="form_camaras">
+                <div class="form_container">
+                    <h2 class="categorias"> CATEGORIAS </h2>
+                    <div>
+                        <select id="camaras_tipo" name="tipo">
+                            <option value="" disable> 🟩 Tipo </option>
+                            {% for categoria in categorias_tipo %}
+                                <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <select id="camaras_precio" name="precio">
+                            <option value="" disable> 🟦 Precio  </option>
+                            {% for categoria in categorias_precio %}
+                                <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <select id="camaras_marca" name="marca">
+                            <option value="" disable> 🟨 Marca </option>
+                            {% for categoria in categorias_marca %}
+                                <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <select id="camaras_resolucion" name="resolucion">
+                            <option value="" disable>🟧 Resolución </option>
+                            {% for categoria in categorias_resolucion %}
+                                <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
-            </nav>
+                <button class="Siguiente" id="Siguiente"> Siguiente </button>
+            </form>
         </div>
-    </header>
-</div>
 
-<div class="contenedor">
-    <form class="form_camaras">
-        <div class="form_container">
-            <h2 class="categorias"> CATEGORIAS </h2>
-            <div>
-                <select id="camaras_tipo" name="tipo">
-                    <option value="" disable> 🟩 Tipo </option>
-                    {% for categoria in categorias_tipo %}
-                        <option value="{{ categoria }}">{{ categoria }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div>
-                <select id="camaras_precio" name="precio">
-                    <option value="" disable> 🟦 Precio  </option>
-                    {% for categoria in categorias_precio %}
-                        <option value="{{ categoria }}">{{ categoria }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div>
-                <select id="camaras_marca" name="marca">
-                    <option value="" disable> 🟨 Marca </option>
-                    {% for categoria in categorias_marca %}
-                        <option value="{{ categoria }}">{{ categoria }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div>
-                <select id="camaras_resolucion" name="resolucion">
-                    <option value="" disable>🟧 Resolución </option>
-                    {% for categoria in categorias_resolucion %}
-                        <option value="{{ categoria }}">{{ categoria }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <button class="Siguiente" id="Siguiente"> Siguiente </button>
-    </form>
-
-    <div class="main-wrapper">
-        <div class="container_camaras">
-            <div class="view-buttons">
-                <button type="button" id="grid-active-btn">
-                    <i class="fas fa-th"></i>
-                </button>
-                <button type="button" id="details-active-btn">
-                    <i class="fas fa-list-ul"></i>
-                </button>
-            </div>
-
-            <div class="item-list grid-view">
-                <!-- Agrega la clase 'grid-view' a 'item-list' para la vista en cuadrícula -->
-                {% for camara in camaras %}
-                    <div class="item" data-tipo="{{ camara.tipo }}" data-precio="{{ camara.precio }}"
-                         data-marca="{{ camara.marca }}" data-resolucion="{{ camara.resolucion }}">
-                        <div class="item-img">
-                            <img class="imagenes" src="{{ camara.imagen.url }}" alt="{{ camara.nombre }}">
-                        </div>
-                        <div class="item-detail">
-                            <a href="#" class="item-name">{{ camara.nombre }}</a>
-                            <div class="item-price">
-                                <span class="new-price">${{ camara.precio }}</span>
+        <!-- Contenedor de cámaras -->
+        <div class="container_camaras-container">
+            <div class="container_camaras">
+                <div class="view-buttons">
+                    <button type="button" id="grid-active-btn">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button type="button" id="details-active-btn">
+                        <i class="fas fa-list-ul"></i>
+                    </button>
+                </div>
+                <div class="item-list grid-view">
+                    <!-- Agrega la clase 'grid-view' a 'item-list' para la vista en cuadrícula -->
+                    {% for camara in camaras %}
+                        <div class="item" data-tipo="{{ camara.tipo }}" data-precio="{{ camara.precio }}"
+                             data-marca="{{ camara.marca }}" data-resolucion="{{ camara.resolucion }}">
+                            <div class="item-img">
+                                <img class="imagenes" src="{{ camara.imagen.url }}" alt="{{ camara.nombre }}">
+                            </div>
+                            <div class="item-detail">
+                                <a href="#" class="item-name">{{ camara.nombre }}</a>
+                                <div class="item-price">
+                                    <span class="new-price">${{ camara.precio }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Manejar cambios en los select
@@ -170,6 +174,7 @@
                 });
             });
         });
+
         // Agregar evento de clic para cambiar la vista
         document.getElementById('grid-active-btn').addEventListener('click', function () {
             document.querySelector('.item-list').classList.remove('list-view');
@@ -181,26 +186,75 @@
             document.querySelector('.item-list').classList.add('list-view');
         });
     });
-
-
 </script>
 
-      <script>
-        // Asegúrate de que el enlace esté disponible después de que se cargue la página
-        document.addEventListener('DOMContentLoaded', function () {
-            // Obtén una referencia al enlace
-            var enlaceRedireccionar = document.getElementById('Siguiente');
+<script>
+    // Asegúrate de que el enlace esté disponible después de que se cargue la página
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtén una referencia al enlace
+        var enlaceRedireccionar = document.getElementById('Siguiente');
 
-            // Agrega un escuchador de eventos para el clic en el enlace
-            enlaceRedireccionar.addEventListener('click', function (event) {
-                // Detén el comportamiento predeterminado del enlace para sevitar la navegación estándar
-                event.preventDefault();
+        // Agrega un escuchador de eventos para el clic en el enlace
+        enlaceRedireccionar.addEventListener('click', function (event) {
+            // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
+            event.preventDefault();
+
+            // Redirige a la otra página
+            window.location.href = '/disenoPlanos/';
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Almacena la cámara seleccionada
+        var camaraSeleccionada = null;
+
+        // Agregar evento de clic para cambiar la vista
+        document.getElementById('Siguiente').addEventListener('click', function () {
+            // Verifica si se ha seleccionado una cámara
+            if (camaraSeleccionada) {
+                // Realiza la lógica para avanzar a la siguiente vista
+                // Puedes agregar más lógica según tus necesidades
 
                 // Redirige a la otra página
                 window.location.href = '/disenoPlanos/';
+
+                // Además, puedes enviar la información de la cámara seleccionada al servidor si es necesario
+                console.log('Cámara seleccionada:', camaraSeleccionada);
+            } else {
+                // Si no se ha seleccionado una cámara, muestra un mensaje de error o realiza la acción correspondiente
+                console.log('Error: Debes seleccionar una cámara antes de continuar.');
+            }
+        });
+
+        // Agregar evento de clic para cada elemento de la lista de cámaras
+        document.querySelectorAll('.item').forEach(function (item) {
+            item.addEventListener('click', function () {
+                // Obtén los atributos o datos relevantes y guárdalos en la variable camaraSeleccionada
+                var tipo = item.getAttribute('data-tipo');
+                var precio = item.getAttribute('data-precio');
+                var marca = item.getAttribute('data-marca');
+                var resolucion = item.getAttribute('data-resolucion');
+
+                // Guarda la cámara seleccionada en la variable
+                camaraSeleccionada = {
+                    tipo: tipo,
+                    precio: precio,
+                    marca: marca,
+                    resolucion: resolucion
+                    // Puedes agregar más atributos según tus necesidades
+                };
+
+                // Hacer algo con la información (puedes mostrarla en la consola por ahora)
+                console.log('Cámara seleccionada:', camaraSeleccionada);
+
+                item.classList.toggle('selected');
             });
         });
-    </script>
+    });
+</script>
+
 
 </body>
 </html>

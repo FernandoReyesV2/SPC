@@ -22,6 +22,10 @@ class Planos(models.Model):
 
 def convertir_imagen_a_bytes(imagen_path):
     try:
+        extensiones_permitidas = ['.jpeg', '.jpg', '.png', '.webp']
+        if not any(imagen_path.lower().endswith(ext) for ext in extensiones_permitidas):
+            raise ValueError("Formato de imagen no admitido")
+
         with Image.open(imagen_path) as img:
             buffer = BytesIO()
             img.save(buffer, format='JPEG')
@@ -29,3 +33,4 @@ def convertir_imagen_a_bytes(imagen_path):
             return byte_sequence
     except Exception as e:
         raise ValueError(f"Error al convertir la imagen a bytes: {e}")
+
