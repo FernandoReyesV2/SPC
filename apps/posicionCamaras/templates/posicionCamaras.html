@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  <div class="hero_area2">
+    <div class="hero_area2">
     <!-- header section strats -->
     <header class="header_section">
       <div class="container">
@@ -73,4 +73,29 @@
     </header>
   </div>
 </body>
+<script>
+    // Asegúrate de que los enlaces estén disponibles después de que se cargue la página
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtén referencias a los enlaces
+        var enlaceInicio = document.getElementById('enlaceInicio');
+        var enlaceAcerca = document.getElementById('enlaceAcerca');
+        var enlaceServicio = document.getElementById('enlaceServicio');
+        var enlaceContacto = document.getElementById('enlaceContacto');
+
+        // Agrega escuchadores de eventos para el clic en los enlaces
+        enlaceIcon.addEventListener('click', redireccionar);
+        enlaceInicio.addEventListener('click', redireccionar);
+        enlaceAcerca.addEventListener('click', redireccionar);
+        enlaceServicio.addEventListener('click', redireccionar);
+        enlaceContacto.addEventListener('click', redireccionar);
+
+        function redireccionar(event) {
+            // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
+            event.preventDefault();
+
+            // Redirige a la otra página
+            window.location.href = '/';
+        }
+    });
+</script>
 </html>

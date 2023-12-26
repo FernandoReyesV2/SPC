@@ -2,9 +2,13 @@ from django.db import models
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+from django.utils import timezone
+from django.db import models
 
 class Planos(models.Model):
     imagen = models.ImageField(upload_to='planos/', blank=True, null=True)
+    #Fecha de creacion de la imagen
+    created_at = models.DateTimeField(default=timezone.now)  # Se añade default
 
     def __str__(self):
         return f'Imagen de plano: {self.imagen.name}' if self.imagen else 'Plano sin imagen'

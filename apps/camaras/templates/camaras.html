@@ -118,7 +118,8 @@
                     <!-- Agrega la clase 'grid-view' a 'item-list' para la vista en cuadrícula -->
                     {% for camara in camaras %}
                         <div class="item" data-tipo="{{ camara.tipo }}" data-precio="{{ camara.precio }}"
-                             data-marca="{{ camara.marca }}" data-resolucion="{{ camara.resolucion }}">
+                             data-marca="{{ camara.marca }}" data-resolucion="{{ camara.resolucion }}"
+                             data-angulo-de-vision="{{ camara.angulo_de_vision }}">
                             <div class="item-img">
                                 <img class="imagenes" src="{{ camara.imagen.url }}" alt="{{ camara.nombre }}">
                             </div>
@@ -130,10 +131,12 @@
                             </div>
                         </div>
                     {% endfor %}
+
                 </div>
             </div>
         </div>
     </div>
+{#    BARRRA LATERAL FILTROS#}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Manejar cambios en los select
@@ -187,9 +190,25 @@
         });
     });
 </script>
-
 <script>
-    // Asegúrate de que el enlace esté disponible después de que se cargue la página
+    var anguloVisionValue; // Declarar la variable en el ámbito global
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Agregar evento de clic para cada elemento de la lista de cámaras
+        document.querySelectorAll('.item').forEach(function (item) {
+            item.addEventListener('click', function () {
+                // Obtén el atributo 'data-angulo-de-vision' y guárdalo en la variable
+                anguloVisionValue = item.getAttribute('data-angulo-de-vision');
+
+                // Hacer algo con el atributo anguloVision (puedes mostrarlo en la consola por ahora)
+                console.log('Ángulo de Visión:', anguloVisionValue);
+
+                // Toggle de la clase 'selected' directamente en el elemento
+                item.classList.toggle('selected');
+            });
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         // Obtén una referencia al enlace
         var enlaceRedireccionar = document.getElementById('Siguiente');
@@ -199,62 +218,38 @@
             // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
             event.preventDefault();
 
-            // Redirige a la otra página
-            window.location.href = '/disenoPlanos/';
+            // Redirige a la otra página con el valor de anguloVisionValue como parámetro de consulta
+            window.location.href = '/disenoPlanos/?anguloVision=' + anguloVisionValue;
         });
     });
 </script>
 
+
+{#    BOTONES DEL NAVBAR#}
 <script>
+    // Asegúrate de que los enlaces estén disponibles después de que se cargue la página
     document.addEventListener('DOMContentLoaded', function () {
-        // Almacena la cámara seleccionada
-        var camaraSeleccionada = null;
+        // Obtén referencias a los enlaces
+        var enlaceInicio = document.getElementById('enlaceInicio');
+        var enlaceAcerca = document.getElementById('enlaceAcerca');
+        var enlaceServicio = document.getElementById('enlaceServicio');
+        var enlaceContacto = document.getElementById('enlaceContacto');
 
-        // Agregar evento de clic para cambiar la vista
-        document.getElementById('Siguiente').addEventListener('click', function () {
-            // Verifica si se ha seleccionado una cámara
-            if (camaraSeleccionada) {
-                // Realiza la lógica para avanzar a la siguiente vista
-                // Puedes agregar más lógica según tus necesidades
+        // Agrega escuchadores de eventos para el clic en los enlaces
+        enlaceIcon.addEventListener('click', redireccionar);
+        enlaceInicio.addEventListener('click', redireccionar);
+        enlaceAcerca.addEventListener('click', redireccionar);
+        enlaceServicio.addEventListener('click', redireccionar);
+        enlaceContacto.addEventListener('click', redireccionar);
 
-                // Redirige a la otra página
-                window.location.href = '/disenoPlanos/';
+        function redireccionar(event) {
+            // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
+            event.preventDefault();
 
-                // Además, puedes enviar la información de la cámara seleccionada al servidor si es necesario
-                console.log('Cámara seleccionada:', camaraSeleccionada);
-            } else {
-                // Si no se ha seleccionado una cámara, muestra un mensaje de error o realiza la acción correspondiente
-                console.log('Error: Debes seleccionar una cámara antes de continuar.');
-            }
-        });
-
-        // Agregar evento de clic para cada elemento de la lista de cámaras
-        document.querySelectorAll('.item').forEach(function (item) {
-            item.addEventListener('click', function () {
-                // Obtén los atributos o datos relevantes y guárdalos en la variable camaraSeleccionada
-                var tipo = item.getAttribute('data-tipo');
-                var precio = item.getAttribute('data-precio');
-                var marca = item.getAttribute('data-marca');
-                var resolucion = item.getAttribute('data-resolucion');
-
-                // Guarda la cámara seleccionada en la variable
-                camaraSeleccionada = {
-                    tipo: tipo,
-                    precio: precio,
-                    marca: marca,
-                    resolucion: resolucion
-                    // Puedes agregar más atributos según tus necesidades
-                };
-
-                // Hacer algo con la información (puedes mostrarla en la consola por ahora)
-                console.log('Cámara seleccionada:', camaraSeleccionada);
-
-                item.classList.toggle('selected');
-            });
-        });
+            // Redirige a la otra página
+            window.location.href = '/';
+        }
     });
 </script>
-
-
 </body>
 </html>

@@ -1,20 +1,15 @@
+# En views.py de tu aplicación
 from django.shortcuts import render
-# Create your views here.
-from django.shortcuts import render
-from .utils import calcular_posiciones_optimas  # Importa la función de cálculo desde un módulo utilitario
+
 
 def posicionCamaras(request):
-    medidas_habitacion = (10, 8, 12)
-    medidas_camara = (2, 2)
-    angulo_vision = 90
-    areas_interes = [(2, 3), (5, 7), (8, 2)]
+    # Obtiene el valor de anguloVision de la URL
+    anguloVision = request.GET.get('anguloVision', None)
 
-    # Calcula las posiciones óptimas de las cámaras
-    posiciones_optimas = calcular_posiciones_optimas(medidas_habitacion, medidas_camara, angulo_vision, areas_interes)
+    # Verifica si anguloVision no es None y es un número válido
+    if anguloVision is not None and anguloVision.replace('.', '', 1).isdigit():
+        # Convierte anguloVision a un número decimal (float)
+        anguloVision = float(anguloVision)
+        print(anguloVision)
 
-    # Pasa los resultados al contexto de la plantilla
-    context = {
-        'posiciones_optimas': posiciones_optimas,
-    }
-
-    return render(request, 'posicionCamaras.html')
+    return render(request, 'posicionCamaras.html', )
