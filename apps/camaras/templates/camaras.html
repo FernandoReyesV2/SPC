@@ -119,7 +119,7 @@
                     {% for camara in camaras %}
                         <div class="item" data-tipo="{{ camara.tipo }}" data-precio="{{ camara.precio }}"
                              data-marca="{{ camara.marca }}" data-resolucion="{{ camara.resolucion }}"
-                             data-angulo-de-vision="{{ camara.angulo_de_vision }}">
+                             data-angulo-de-vision="{{ camara.angulo_de_vision }}" data-nombre="{{ camara.nombre }}">
                             <div class="item-img">
                                 <img class="imagenes" src="{{ camara.imagen.url }}" alt="{{ camara.nombre }}">
                             </div>
@@ -190,36 +190,53 @@
         });
     });
 </script>
+
+{#    SELECCION DE CAMARAS Y ENVIO#}
 <script>
     var anguloVisionValue; // Declarar la variable en el ámbito global
+    var camarasSeleccionadas = []; // Lista para almacenar los valores de anguloVisionValue
+    var maxCamarasSeleccionadas = 4; // Número máximo de cámaras permitidas
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Agregar evento de clic para cada elemento de la lista de cámaras
         document.querySelectorAll('.item').forEach(function (item) {
             item.addEventListener('click', function () {
-                // Obtén el atributo 'data-angulo-de-vision' y guárdalo en la variable
-                anguloVisionValue = item.getAttribute('data-angulo-de-vision');
+                var nombreCamara = item.getAttribute('data-nombre');
+                console.log('Nombre:', nombreCamara);
+
+                // Verificar si la cámara ya está seleccionada
+                if (item.classList.contains('selected')) {
+                    // Deseleccionar la cámara
+                    item.classList.remove('selected');
+                    // Decrementar el contador
+                    camarasSeleccionadas.pop();
+                } else {
+                    // Verificar si se alcanzó el límite de cámaras seleccionadas
+                    if (camarasSeleccionadas.length < maxCamarasSeleccionadas) {
+                        // Seleccionar la cámara
+                        item.classList.add('selected');
+                        // Incrementar el contador y agregar el valor a la lista
+                        // Obtén el atributo 'data-angulo-de-vision' y guárdalo en la variable
+                        anguloVisionValue = item.getAttribute('data-angulo-de-vision');
+                        camarasSeleccionadas.push(anguloVisionValue);
+                    } else {
+                        console.log('Se alcanzó el límite de cámaras seleccionadas');
+                    }
+                }
 
                 // Hacer algo con el atributo anguloVision (puedes mostrarlo en la consola por ahora)
                 console.log('Ángulo de Visión:', anguloVisionValue);
-
-                // Toggle de la clase 'selected' directamente en el elemento
-                item.classList.toggle('selected');
+                console.log('Cámaras Seleccionadas:', camarasSeleccionadas);
             });
         });
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Obtén una referencia al enlace
         var enlaceRedireccionar = document.getElementById('Siguiente');
-
-        // Agrega un escuchador de eventos para el clic en el enlace
         enlaceRedireccionar.addEventListener('click', function (event) {
-            // Detén el comportamiento predeterminado del enlace para evitar la navegación estándar
             event.preventDefault();
 
-            // Redirige a la otra página con el valor de anguloVisionValue como parámetro de consulta
-            window.location.href = '/disenoPlanos/?anguloVision=' + anguloVisionValue;
+            // Redirige a la otra página con los valores de anguloVisionValue como parámetros de consulta
+            window.location.href = '/disenoPlanos/?anguloVision=' + camarasSeleccionadas.join(',');
         });
     });
 </script>

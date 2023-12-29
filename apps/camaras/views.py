@@ -11,6 +11,7 @@ def camaras(request):
     categorias_marca = Camara.objects.values_list('marca', flat=True).distinct()
     categorias_resolucion = Camara.objects.values_list('resolucion', flat=True).distinct()
     categorias_angulo_de_vision = Camara.objects.values_list('angulo_de_vision', flat=True).distinct()
+    categorias_nombre = Camara.objects.values_list('nombre', flat=True).distinct()
 
     # Renderizar la página con la lista de cámaras y categorías
     return render(request, 'camaras.html', {
@@ -20,4 +21,5 @@ def camaras(request):
         'categorias_marca': categorias_marca,
         'categorias_resolucion': categorias_resolucion,
         'angulo_de_vision': categorias_angulo_de_vision,
+        'nombre': categorias_nombre,
     })

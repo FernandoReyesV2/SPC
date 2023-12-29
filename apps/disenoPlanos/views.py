@@ -39,6 +39,7 @@ def disenoPlanos(request):
             url = reverse('posicionCamaras')
 
             # Agrega los argumentos de palabra clave a la URL
+            print(anguloVision)
             url += f'?anguloVision={anguloVision}'
 
             return redirect(url)
