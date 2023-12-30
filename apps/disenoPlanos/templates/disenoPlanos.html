@@ -89,15 +89,18 @@
             </div>
             <input type="hidden" id="anguloVisionInput" name="anguloVision" value="">
             <button class="terminar_plano" type="submit" id="terminarPlanoBtn">Enviar Plano</button>
-            <button class="dibujar_habitacion">🟥 Dibujar Habitacion</button>
-            <button class="colocar_ventana">🟧 Colocar Ventana</button>
-            <button class="dibujar_pared">🟨 Dibujar Pared</button>
-            <button class="definir_habitacion">🟩 Definir Habitacion</button>
-            <button class="colocar_puerta">🟦 Colocar Puerta</button>
+            <img src="../../../static/images/ejemplo.jpg" class="ejemplo_plano">
+            <p class="sugerencia"> *imagen sugerencia*</p>
+{#            <button class="dibujar_habitacion">🟥 Dibujar Habitacion</button>#}
+{#            <button class="colocar_ventana">🟧 Colocar Ventana</button>#}
+{#            <button class="dibujar_pared">🟨 Dibujar Pared</button>#}
+{#            <button class="definir_habitacion">🟩 Definir Habitacion</button>#}
+{#            <button class="colocar_puerta">🟦 Colocar Puerta</button>#}
         </div>
         <div class="plano"></div>
     </div>
 </section>
+{# NAVBAR ENLACES#}
 <script>
     // Asegúrate de que los enlaces estén disponibles después de que se cargue la página
     document.addEventListener('DOMContentLoaded', function () {
@@ -138,6 +141,7 @@
         var imagenInput = document.getElementById('imagenInput');
         var fondoDiv = document.querySelector('.plano');
         var subirPlanoForm = document.getElementById('subirPlanoForm');
+        var terminarPlanoBtn = document.getElementById('terminarPlanoBtn');
 
         // Agrega un escuchador de eventos para el cambio en el input de imagen
         imagenInput.addEventListener('change', function () {
@@ -148,17 +152,23 @@
 
                 // Asigna la imagen como fondo del div de fondo
                 fondoDiv.style.backgroundImage = 'url("' + imageUrl + '")';
+
+                // Habilita el botón "Terminar Plano"
+                terminarPlanoBtn.disabled = false;
             }
         });
 
         // Agrega un escuchador de eventos para el clic en el botón "Enviar Plano"
-        document.getElementById('terminarPlanoBtn').addEventListener('click', function () {
+        terminarPlanoBtn.addEventListener('click', function () {
             // Asigna el valor del ángulo al campo oculto
             document.getElementById('anguloVisionInput').value = anguloVisionValue;
 
             // Simula un clic en el botón de envío del formulario cuando se hace clic en "Enviar Plano"
             subirPlanoForm.submit();
         });
+
+        // Deshabilita el botón al principio (hasta que se cargue una imagen)
+        terminarPlanoBtn.disabled = true;
     });
 </script>
 </body>

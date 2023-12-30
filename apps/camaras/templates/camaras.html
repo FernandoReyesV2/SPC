@@ -188,6 +188,12 @@
             document.querySelector('.item-list').classList.remove('grid-view');
             document.querySelector('.item-list').classList.add('list-view');
         });
+        document.querySelector('.form_camaras').addEventListener('submit', function (event) {
+            if (camarasSeleccionadas.length === 0) {
+                event.preventDefault();
+                alert('Selecciona al menos una cámara antes de continuar.');
+                }
+            });
     });
 </script>
 
@@ -230,14 +236,20 @@
         });
     });
 
+    var formularioCamaras = document.getElementById('formularioCamaras');
+    var enlaceRedireccionar = document.getElementById('Siguiente');
+
     document.addEventListener('DOMContentLoaded', function () {
         var enlaceRedireccionar = document.getElementById('Siguiente');
         enlaceRedireccionar.addEventListener('click', function (event) {
             event.preventDefault();
-
-            // Redirige a la otra página con los valores de anguloVisionValue como parámetros de consulta
-            window.location.href = '/disenoPlanos/?anguloVision=' + camarasSeleccionadas.join(',');
-        });
+            if (camarasSeleccionadas.length === 0) {
+                event.preventDefault();
+                alert('Selecciona al menos una cámara antes de continuar.');
+            } else {
+                window.location.href = '/disenoPlanos/?anguloVision=' + camarasSeleccionadas.join(',');
+                }
+            });
     });
 </script>
 
