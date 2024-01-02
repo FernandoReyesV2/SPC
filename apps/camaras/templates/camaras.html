@@ -201,7 +201,7 @@
 <script>
     var anguloVisionValue; // Declarar la variable en el ámbito global
     var camarasSeleccionadas = []; // Lista para almacenar los valores de anguloVisionValue
-    var maxCamarasSeleccionadas = 4; // Número máximo de cámaras permitidas
+    var maxCamarasSeleccionadas = {{ limite_cameras }}; // Número máximo de cámaras permitidas
 
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.item').forEach(function (item) {
@@ -238,6 +238,8 @@
 
     var formularioCamaras = document.getElementById('formularioCamaras');
     var enlaceRedireccionar = document.getElementById('Siguiente');
+    var medidas = "{{ medidas }}";
+
 
     document.addEventListener('DOMContentLoaded', function () {
         var enlaceRedireccionar = document.getElementById('Siguiente');
@@ -247,7 +249,7 @@
                 event.preventDefault();
                 alert('Selecciona al menos una cámara antes de continuar.');
             } else {
-                window.location.href = '/disenoPlanos/?anguloVision=' + camarasSeleccionadas.join(',');
+                window.location.href = '/posicionCamaras/?anguloVision=' + camarasSeleccionadas.join(',') + '&medidas=' + medidas;
                 }
             });
     });

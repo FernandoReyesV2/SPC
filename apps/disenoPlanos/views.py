@@ -7,20 +7,26 @@ from django.urls import reverse
 
 
 def disenoPlanos(request):
-    # Obtén el valor de anguloVision (puede ser de la solicitud GET o POST)
     anguloVision = request.GET.get('anguloVision', None)
+
     if request.method == 'POST':
         form = PlanosForm(request.POST, request.FILES)
         if form.is_valid():
             plano = form.save(commit=False)
-
             plano.save()
 
-            # Configura la ruta al ejecutable de Tesseract OCR
             pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-            # Cargamos la imagen
+            # Cargamos la imagen original
             original = cv2.imread(plano.imagen.path)
+
+            # Preprocesamiento
+            gray = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
+            gray = cv2.GaussianBlur(gray, (5, 5), 0)
+            thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+
+            # Encuentra contornos en la imagen binarizada
+            contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
             # Reconoce números y comas
             texto_numeros_comas = pytesseract.image_to_string(original,
@@ -36,11 +42,10 @@ def disenoPlanos(request):
             print(medidas)
 
             # Utiliza reverse para obtener la URL con los argumentos de palabra clave
-            url = reverse('posicionCamaras')
+            url = reverse('camaras')
 
             # Agrega los argumentos de palabra clave a la URL
-            print(anguloVision)
-            url += f'?anguloVision={anguloVision}'
+            url += f'?anguloVision={anguloVision}&medidas={",".join(map(str, medidas))}'
 
             return redirect(url)
 
@@ -50,5 +55,3 @@ def disenoPlanos(request):
     else:
         form = PlanosForm()
     return render(request, 'disenoPlanos.html', {'form': form, 'anguloVision': anguloVision})
-
-

@@ -10,6 +10,7 @@ def posicionCamaras(request):
     anguloVision = []
     # Obtiene el valor de anguloVision de la URL
     angulo_Vision = request.GET.get('anguloVision', None)
+    medidas_str = request.GET.get('medidas', None)
 
     # Verifica si anguloVision no es None y es una lista de números válidos
     if angulo_Vision is not None:
@@ -23,8 +24,8 @@ def posicionCamaras(request):
         anguloVision.extend(angulo_Vision)
         print("Ángulos:", anguloVision)
 
-    # Medidas de la habitacion
-    medidas = (3, 3)
+    if medidas_str:
+        medidas = tuple(map(float, medidas_str.replace('(', '').replace(')', '').split(',')))
 
     # Vertice inicial
     vertice = (0, 0)
