@@ -1,12 +1,46 @@
-.fondo{
+.fondo {
     display: flex;
+    position: relative; /* Añadido para posicionar el botón correctamente */
+    height: 83vh;
 }
 
-.contenedor_resultado{
+.contenedor_resultado {
     background-color: #C2C2C2;
     margin: auto;
+    text-align: center; /* Añadido para centrar la imagen */
 }
 
-.contenedor_resultado img{
-    width: 45rem;
+.contenedor_resultado img {
+    max-width: 100%; /* Hace que la imagen sea responsive */
+    height: 40rem; /* Ajusta la altura automáticamente */
 }
+
+.boton-imprimir {
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background: #9E9E9E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.boton-imprimir:hover {
+    background: #e0e0e0;
+}
+
+@media print {
+    .fondo {
+        display: flex;
+        position: relative;
+    }
+
+    .contenedor_resultado {
+        page-break-inside: avoid; /* Evitar salto de página dentro de .contenedor_resultado */
+    }
+}
+

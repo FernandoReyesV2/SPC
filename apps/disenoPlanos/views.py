@@ -5,7 +5,6 @@ import cv2
 import pytesseract
 from django.urls import reverse
 
-
 def disenoPlanos(request):
     anguloVision = request.GET.get('anguloVision', None)
 
@@ -41,13 +40,20 @@ def disenoPlanos(request):
 
             print(medidas)
 
-            # Utiliza reverse para obtener la URL con los argumentos de palabra clave
-            url = reverse('camaras')
+            # Verifica si la tupla tiene al menos dos valores
+            if len(medidas) >= 2:
+                # Utiliza reverse para obtener la URL con los argumentos de palabra clave
+                url = reverse('camaras')
 
-            # Agrega los argumentos de palabra clave a la URL
-            url += f'?anguloVision={anguloVision}&medidas={",".join(map(str, medidas))}'
+                # Agrega los argumentos de palabra clave a la URL
+                url += f'?anguloVision={anguloVision}&medidas={",".join(map(str, medidas))}'
 
-            return redirect(url)
+                return redirect(url)
+            else:
+                # Vuelve a cargar el formulario con un mensaje de error
+                messages.error(request, 'La imagen no contiene los valores necesarios.')
+                return render(request, 'disenoPlanos.html',
+                              {'form': form, 'anguloVision': anguloVision, 'mostrar_alerta': True})
 
         else:
             messages.error(request, 'Hubo un error al cargar el plano. Verifica los datos ingresados.')

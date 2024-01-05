@@ -199,62 +199,86 @@
 
 {#    SELECCION DE CAMARAS Y ENVIO#}
 <script>
-    var anguloVisionValue; // Declarar la variable en el ámbito global
-    var camarasSeleccionadas = []; // Lista para almacenar los valores de anguloVisionValue
-    var maxCamarasSeleccionadas = {{ limite_cameras }}; // Número máximo de cámaras permitidas
-
     document.addEventListener('DOMContentLoaded', function () {
+        var contador_global = 0;
+        var maxCamarasSeleccionadas = {{ limite_cameras }};
+        var camarasSeleccionadas = {};
+
         document.querySelectorAll('.item').forEach(function (item) {
+            var anguloVisionValue = item.getAttribute('data-angulo-de-vision');
+            var cantidadAgregada = 0;
+
             item.addEventListener('click', function () {
-                var nombreCamara = item.getAttribute('data-nombre');
-                console.log('Nombre:', nombreCamara);
+                if (!item.classList.contains('selected') && contador_global < maxCamarasSeleccionadas) {
+                    // La cámara no está seleccionada y no hemos alcanzado el límite, mostrar los botones
+                    item.classList.add('selected');
 
-                // Verificar si la cámara ya está seleccionada
-                if (item.classList.contains('selected')) {
-                    // Deseleccionar la cámara
-                    item.classList.remove('selected');
-                    // Decrementar el contador
-                    camarasSeleccionadas.pop();
-                } else {
-                    // Verificar si se alcanzó el límite de cámaras seleccionadas
-                    if (camarasSeleccionadas.length < maxCamarasSeleccionadas) {
-                        // Seleccionar la cámara
-                        item.classList.add('selected');
-                        // Incrementar el contador y agregar el valor a la lista
-                        // Obtén el atributo 'data-angulo-de-vision' y guárdalo en la variable
-                        anguloVisionValue = item.getAttribute('data-angulo-de-vision');
-                        camarasSeleccionadas.push(anguloVisionValue);
-                    } else {
-                        console.log('Se alcanzó el límite de cámaras seleccionadas');
-                    }
+                    var addButton = document.createElement('button');
+                    addButton.textContent = 'Añadir';
+                    addButton.addEventListener('click', function () {
+                        if (contador_global < maxCamarasSeleccionadas) {
+                            // Paso 3: Sumar el valor de counter a contador_global
+                            contador_global += 1;
+                            camarasSeleccionadas[anguloVisionValue] = (camarasSeleccionadas[anguloVisionValue] || 0) + 1;
+                            cantidadAgregada++;
+                            updateCounter();
+                        } else {
+                            console.log('Se alcanzó el límite de cámaras seleccionadas');
+                        }
+                    });
+
+                    var removeButton = document.createElement('button');
+                    removeButton.textContent = 'Quitar';
+                    removeButton.addEventListener('click', function () {
+                        if (cantidadAgregada > 0) {
+                            contador_global -= 1; // Restar 1 al contador_global al quitar una cámara
+                            camarasSeleccionadas[anguloVisionValue]--;
+                            cantidadAgregada--;
+                            updateCounter();
+                        }
+                    });
+
+                    var counter = document.createElement('span');
+                    counter.className = 'camara-counter';
+                    counter.textContent = cantidadAgregada;
+
+                    item.appendChild(addButton);
+                    item.appendChild(counter);
+                    item.appendChild(removeButton);
                 }
-
-                // Hacer algo con el atributo anguloVision (puedes mostrarlo en la consola por ahora)
-                console.log('Ángulo de Visión:', anguloVisionValue);
-                console.log('Cámaras Seleccionadas:', camarasSeleccionadas);
             });
+
+            function updateCounter() {
+                // Actualizar el contador para la cámara actual
+                var counter = item.querySelector('.camara-counter');  // Utiliza la clase para seleccionar el contador específico
+                if (counter) {
+                    counter.textContent = camarasSeleccionadas[anguloVisionValue] || 0;
+                }
+            }
         });
-    });
 
-    var formularioCamaras = document.getElementById('formularioCamaras');
-    var enlaceRedireccionar = document.getElementById('Siguiente');
-    var medidas = "{{ medidas }}";
-
-
-    document.addEventListener('DOMContentLoaded', function () {
         var enlaceRedireccionar = document.getElementById('Siguiente');
+        var medidas = "{{ medidas }}";
+
         enlaceRedireccionar.addEventListener('click', function (event) {
             event.preventDefault();
-            if (camarasSeleccionadas.length === 0) {
-                event.preventDefault();
+            var camarasSeleccionadasList = [];
+
+            // Convertir el objeto a una lista para enviar al servidor
+            for (var angulo in camarasSeleccionadas) {
+                for (var i = 0; i < camarasSeleccionadas[angulo]; i++) {
+                    camarasSeleccionadasList.push(angulo);
+                }
+            }
+
+            if (camarasSeleccionadasList.length === 0) {
                 alert('Selecciona al menos una cámara antes de continuar.');
             } else {
-                window.location.href = '/posicionCamaras/?anguloVision=' + camarasSeleccionadas.join(',') + '&medidas=' + medidas;
-                }
-            });
+                window.location.href = '/posicionCamaras/?anguloVision=' + camarasSeleccionadasList.join(',') + '&medidas=' + medidas;
+            }
+        });
     });
 </script>
-
 
 {#    BOTONES DEL NAVBAR#}
 <script>

@@ -171,5 +171,12 @@
         terminarPlanoBtn.disabled = true;
     });
 </script>
+
+<script>
+    // Asegúrate de que la alerta se muestre solo si se establece la variable 'mostrar_alerta'
+    {% if mostrar_alerta %}
+        alert("Vuelve a subir el plano, no se reconocieron correctamente los números.");
+    {% endif %}
+</script>
 </body>
 </html>
